@@ -1,4 +1,5 @@
 # HILL CIPHER
+#NAME:VISVESWARRAN HARIKRISHNAN
 HILL CIPHER
 EX. NO: 3 AIM:
  
@@ -29,7 +30,63 @@ STEP-4: Multiply the two matrices to obtain the cipher text of length three.
 STEP-5: Combine all these groups to get the complete cipher text.
 
 ## PROGRAM 
+```
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    unsigned int a[3][3] = {{6, 24, 1}, {13, 16, 10}, {20, 17, 15}};
+    unsigned int b[3][3] = {{8, 5, 10}, {21, 8, 21}, {21, 12, 8}};
+    int i, j, t = 0;
+    unsigned int c[3], d[3];
+    char msg[4];
+
+    printf("Enter plain text (3 letters): ");
+    scanf("%3s", msg);
+
+    if (strlen(msg) != 3)
+    {
+        printf("Error: The plain text must be exactly 3 letters.\n");
+        return 1;
+    }
+
+    for (i = 0; i < 3; i++)
+        c[i] = msg[i] - 'A';
+
+    for (i = 0; i < 3; i++)
+    {
+        t = 0;
+        for (j = 0; j < 3; j++)
+            t += a[i][j] * c[j];
+        d[i] = t % 26;
+    }
+
+    printf("Encrypted Cipher Text: ");
+    for (i = 0; i < 3; i++)
+        printf("%c", d[i] + 'A');
+
+    for (i = 0; i < 3; i++)
+    {
+        t = 0;
+        for (j = 0; j < 3; j++)
+            t += b[i][j] * d[j];
+        c[i] = t % 26;
+    }
+
+    printf("\nDecrypted Cipher Text: ");
+    for (i = 0; i < 3; i++)
+        printf("%c", c[i] + 'A');
+
+    getchar();
+    return 0;
+}
+
+```
 
 ## OUTPUT
+<img width="399" height="123" alt="Screenshot 2026-01-28 085843" src="https://github.com/user-attachments/assets/c607d5cc-93fe-4f79-980d-64c89d8cb0ca" />
+
 
 ## RESULT
+Thus the program executed successfully.
